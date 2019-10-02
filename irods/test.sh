@@ -60,7 +60,7 @@ cp /etc/magic foo.txt
 test_file
 
 echo "MPU object"
-# dd if=/dev/zero of=foo.txt bs=1M count=128
-# test_file
+dd if=/dev/zero of=foo.txt bs=1M count=128
+test_file
 
 echo "OK"
