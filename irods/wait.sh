@@ -21,4 +21,6 @@ wait_for_irods() {
     done
 }
 
+export IRODS_HOST=127.0.0.1
+
 wait_for_irods

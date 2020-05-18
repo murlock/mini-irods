@@ -3,6 +3,8 @@ version: '2'
 services:
   sql:
     image: postgres:9.6
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
   irods:
     image: mini-irods
     depends_on:

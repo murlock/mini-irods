@@ -9,6 +9,7 @@ done
 
 psql -h sql -U postgres --file=/create.sql
 
+export IRODS_HOST=127.0.0.1
 python /var/lib/irods/scripts/setup_irods.py --json_configuration_file=/config.json
 
 /login-irods.sh rods rods
