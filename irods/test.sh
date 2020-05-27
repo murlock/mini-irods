@@ -6,6 +6,7 @@ set -x
 export AWS_ACCESS_KEY_ID=demo:demo
 export AWS_SECRET_ACCESS_KEY=DEMO_PASS
 export AWS_DEFAULT_REGION=us-east-1
+export ENDPOINT=172.24.0.100:5000
 
 USER=$(id -nu)
 
@@ -32,19 +33,19 @@ function test_file() {
     )
 
     #
-    aws --endpoint-url http://172.24.0.100:5000 s3api head-object --bucket test --key "irods/Vault/home/${USER}/${name}" || (
+    aws --endpoint-url http://${ENDPOINT} s3api head-object --bucket test --key "irods/Vault/home/${USER}/${name}" || (
         echo "File missing on S3"
         exit 1
     )
 
     irm "${name}"
 
-    aws --endpoint-url http://172.24.0.100:5000 s3api head-object --bucket test --key "irods/Vault/home/${USER}/${name}" && (
+    aws --endpoint-url http://${ENDPOINT} s3api head-object --bucket test --key "irods/Vault/home/${USER}/${name}" && (
         echo "File found on S3"
         exit 1
     )
 
-    aws --endpoint-url http://172.24.0.100:5000 s3api head-object --bucket test --key "irods/Vault/trash/home/${USER}/${name}" || (
+    aws --endpoint-url http://${ENDPOINT} s3api head-object --bucket test --key "irods/Vault/trash/home/${USER}/${name}" || (
         echo "File missing on S3"
         exit 1
     )
